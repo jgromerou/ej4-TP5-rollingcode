@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  font-family: 'Orbitron', sans-serif;
+}
+
+main {
+  flex-grow: 1;
+}
+
+p {
+  color: #fff;
+}
+
+.textoFucsia {
+  text-shadow: 0 0 5px #7d17b8, 0 0 10px #7d17b8, 0 0 15px #7d17b8,
+    0 0 20px #7d17b8, 0 0 30px #7d17b8, 0 0 40px #7d17b8, 0 0 50px #7d17b8,
+    0 0 70px #7d17b8, 0 0 90px #7d17b8, 0 0 100px #7d17b8;
+}
+
+.btn {
+  color: #fff;
+}
+
+.btnAzul {
+  background: #54a6ef;
+}
+.btnVerde {
+  background: #86ff94;
+  color: #000;
+}
+.btnFucsia {
+  background: #7d17b8;
+}
+
+.btnAzul:hover {
+  border: 1px solid #54a6ef;
+  color: #54a6ef;
+}
+.btnVerde:hover {
+  border: 1px solid #86ff94;
+  color: #86ff94;
+}
+.btnFucsia:hover {
+  border: 1px solid #7d17b8;
+  color: #7d17b8;
+}
