@@ -2,23 +2,11 @@ mostrarHora();
 setInterval(mostrarHora, 1000); //guardo el identificador unico del setInterval
 
 let ciudad = document.querySelectorAll('.ciudad');
-console.log(ciudad);
-//ciudad.addEventListener('click', mostrarCiudad);
 for (let i = 0; i < ciudad.length; i++) {
   ciudad[i].addEventListener('click', horaCiudad);
 }
 
 //Funciones
-function mostrarCiudad(event) {
-  console.log(event.target.value);
-}
-
-// $(function () {
-//   mostrarHora();
-//   setInterval(mostrarHora, 1000);
-//   $('.region').on('click', horaRegion);
-// });
-
 function mostrarHora() {
   //Hora local
   let fechaActual = new Date();
@@ -70,23 +58,10 @@ function mostrarHora() {
   } else {
     pHora.innerHTML = `${horas}: ${minutos}: ${segundos} AM`;
   }
-
-  // let fecha = new Date();
-  // let segundos = fecha.getSeconds();
-  // if (segundos < 10) segundos = '0' + segundos;
-  // let minutos = fecha.getMinutes();
-  // if (minutos < 10) minutos = '0' + minutos;
-  // let horas = fecha.getHours();
-  // if (horas < 10) horas = '0' + horas;
-
-  // $('#hora').html(horas + ':' + minutos + ':' + segundos);
-  // $('#dia').html(semana[fecha.getDay()] + ', ');
-  // $('#fecha').html(fecha.getDate() + ' de ' + meses[fecha.getMonth()]);
 }
 
 function horaCiudad() {
   //Hora ciudades
-
   let ciudades = [
     { ciudad: 'México DF', diferencia: -3 },
     { ciudad: 'Sao Paulo', diferencia: 0 },
@@ -101,7 +76,6 @@ function horaCiudad() {
   let checked = this.checked;
   let index = parseInt(this.value);
   if (checked) {
-    console.log(checked);
     hora = fechaActual.getHours() + ciudades[index].diferencia;
     if (hora >= 24) hora = hora - 24;
     if (hora < 10) hora = '0' + hora;
@@ -139,45 +113,13 @@ function horaCiudad() {
     //insertar en el div otros
     let otros = document.getElementById('otros');
 
+    //se inserta en divContenedor de la ciudad en el id otros
     otros.appendChild(divContenedor);
-
-    // otros.append(`<div class='row"
-    // ${index} +
-    // "'><div class='col-xs-6'><span class='ciudad'>" +
-    // ${ciudades[index].ciudad} +
-    // "</span></div><div class='col-xs-6'><span class='hora-ciudad'>" +
-    // ${hora} +
-    // ':' +
-    // ${minutos} +
-    // ':' +
-    // ${segundos} +
-    // '</span></div></div>`);
-
-    // $('#otros').append(
-    //   "<div class='row" +
-    //     index +
-    //     "'><div class='col-xs-6'><span class='ciudad'>" +
-    //     ciudades[index].ciudad +
-    //     "</span></div><div class='col-xs-6'><span class='hora-ciudad'>" +
-    //     hora +
-    //     ':' +
-    //     minutos +
-    //     ':' +
-    //     segundos +
-    //     '</span></div></div>'
-    // );
   } else {
-    //console.log(checked);
-    //console.log(ciudades[index].ciudad);
-
     let element = document.getElementsByClassName(index);
-    console.log(element);
     while (element.length > 0) {
+      //se elimina el element o ciudad correspondiente al index del array ciudades
       element[0].parentNode.removeChild(element[0]);
     }
-
-    // let otros = document.getElementById('otros');
-    // console.log(otros);
   }
-  // } else $('.row' + index).remove();
 }
