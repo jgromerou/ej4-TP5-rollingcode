@@ -1,8 +1,6 @@
 mostrarHora();
 setInterval(mostrarHora, 1000); //guardo el identificador unico del setInterval
 
-//TODO: Traer region para hacer un addEventListener
-
 let ciudad = document.querySelectorAll('.ciudad');
 console.log(ciudad);
 //ciudad.addEventListener('click', mostrarCiudad);
@@ -10,7 +8,7 @@ for (let i = 0; i < ciudad.length; i++) {
   ciudad[i].addEventListener('click', horaCiudad);
 }
 
-//funciones
+//Funciones
 function mostrarCiudad(event) {
   console.log(event.target.value);
 }
@@ -103,6 +101,7 @@ function horaCiudad() {
   let checked = this.checked;
   let index = parseInt(this.value);
   if (checked) {
+    console.log(checked);
     hora = fechaActual.getHours() + ciudades[index].diferencia;
     if (hora >= 24) hora = hora - 24;
     if (hora < 10) hora = '0' + hora;
@@ -131,11 +130,16 @@ function horaCiudad() {
     divHora.className = 'col-6';
     divHora.append(spanHora);
 
+    //div que contiene a los otros div
+    let divContenedor = document.createElement('div');
+    divContenedor.className = `row ${index}`;
+    divContenedor.appendChild(divCiudad);
+    divContenedor.appendChild(divHora);
+
     //insertar en el div otros
     let otros = document.getElementById('otros');
-    otros.className = 'row';
-    otros.appendChild(divCiudad);
-    otros.appendChild(divHora);
+
+    otros.appendChild(divContenedor);
 
     // otros.append(`<div class='row"
     // ${index} +
@@ -162,5 +166,18 @@ function horaCiudad() {
     //     segundos +
     //     '</span></div></div>'
     // );
-  } else $('.row' + index).remove();
+  } else {
+    //console.log(checked);
+    //console.log(ciudades[index].ciudad);
+
+    let element = document.getElementsByClassName(index);
+    console.log(element);
+    while (element.length > 0) {
+      element[0].parentNode.removeChild(element[0]);
+    }
+
+    // let otros = document.getElementById('otros');
+    // console.log(otros);
+  }
+  // } else $('.row' + index).remove();
 }
