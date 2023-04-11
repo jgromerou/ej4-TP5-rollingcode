@@ -30,29 +30,29 @@ main {
   color: #fff;
 }
 
-.btnAzul {
+/* .btnAzul {
   background: #54a6ef;
-}
+} */
 .btnVerde {
   background: #86ff94;
   color: #000;
 }
-.btnFucsia {
+/* .btnFucsia {
   background: #7d17b8;
-}
+} */
 
-.btnAzul:hover {
+/* .btnAzul:hover {
   border: 1px solid #54a6ef;
   color: #54a6ef;
-}
+} */
 .btnVerde:hover {
   border: 1px solid #86ff94;
   color: #86ff94;
 }
-.btnFucsia:hover {
+/* .btnFucsia:hover {
   border: 1px solid #7d17b8;
   color: #7d17b8;
-}
+} */
 
 .region {
   color: #000;
