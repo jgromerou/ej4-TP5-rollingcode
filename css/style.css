@@ -4,7 +4,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #000;
+  background: url(../img/universo.jpg);
   font-family: 'Orbitron', sans-serif;
 }
 
@@ -12,14 +12,18 @@ main {
   flex-grow: 1;
 }
 
-p {
+/* p {
   color: #fff;
-}
+} */
 
 .textoFucsia {
   text-shadow: 0 0 5px #7d17b8, 0 0 10px #7d17b8, 0 0 15px #7d17b8,
     0 0 20px #7d17b8, 0 0 30px #7d17b8, 0 0 40px #7d17b8, 0 0 50px #7d17b8,
     0 0 70px #7d17b8, 0 0 90px #7d17b8, 0 0 100px #7d17b8;
+}
+
+.textoBlanco {
+  color: #fff;
 }
 
 .btn {
@@ -49,3 +53,42 @@ p {
   border: 1px solid #7d17b8;
   color: #7d17b8;
 }
+
+.region {
+  color: #000;
+}
+
+#hora {
+  font-size: 49px;
+  font-weight: 700;
+}
+
+#otros {
+  margin-top: 21px;
+}
+
+#seleccionar {
+  margin-top: 21px;
+}
+
+.hora-ciudad,
+.ciudad {
+  font-size: 21px;
+}
+
+#hora {
+  margin-top: 21px;
+}
+
+#myModal {
+  color: #000;
+  text-align: left;
+}
+
+.modal-body p {
+  text-align: left;
+}
+
+/* p input {
+  color: #000;
+} */

@@ -27,11 +27,78 @@
     <main class="box pt-3 text-center">
       <section>
         <article>
-          <p id="fecha" class="textoFucsia fs-1 mb-2">
+          <p id="fecha" class="textoBlanco textoFucsia fs-1 mb-2">
             Lunes 10 de Abril del 2023
           </p>
-          <p id="hora" class="fs-1">19:01:02</p>
+          <p id="hora" class="textoBlanco textoFucsia fs-1">19:01:02</p>
         </article>
+      </section>
+      <section>
+        <!-- Button trigger modal -->
+        <button
+          type="button"
+          class="btn btnVerde mt-3"
+          data-bs-toggle="modal"
+          data-bs-target="#myModal"
+        >
+          Seleccionar
+        </button>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="myModal"
+          tabindex="-1"
+          aria-labelledby="myModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="myModalLabel">
+                  Selecciona una Región
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body text-center">
+                <p>
+                  <input class="region" type="checkbox" value="0" />México DC
+                </p>
+                <p id="sao-paulo">
+                  <input class="region" type="checkbox" value="1" />Sao Paulo
+                </p>
+                <p id="washington-dc">
+                  <input class="region" type="checkbox" value="2" />Washington
+                  DC
+                </p>
+                <p id="madrid">
+                  <input class="region" type="checkbox" value="3" />Madrid
+                </p>
+                <p><input class="region" type="checkbox" value="4" />Seúl</p>
+                <p><input class="region" type="checkbox" value="5" />Toronto</p>
+                <p><input class="region" type="checkbox" value="6" />Bogotá</p>
+                <p><input class="region" type="checkbox" value="7" />Caracas</p>
+              </div>
+              <!-- <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div> -->
+            </div>
+          </div>
+        </div>
       </section>
     </main>
     <footer class="bg-dark text-center text-light py-3">
