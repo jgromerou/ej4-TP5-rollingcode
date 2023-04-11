@@ -1,8 +1,8 @@
-# Ejercicio 1 del TP5: Práctica DOM y BOM
+# Ejercicio 4 del TP5: Práctica DOM y BOM
 
 ## Descripción
 
-Usar la Practica DOM y crear un script con toda la lógica necesaria para el Juego de los Números Magicos y maquetado del mismo.
+Usar la Practica DOM y crear un script con toda la lógica necesaria para hacer un Reloj Digital y maquetado del mismo.
 
 ## Tecnologias / Herramientas 🛠
 
@@ -17,7 +17,7 @@ Usar la Practica DOM y crear un script con toda la lógica necesaria para el Jue
 En una terminal usar el siguiente comando
 
 ```
-git clone https://github.com/jgromerou/ej1-tp5-rollingcode.git
+git clone https://github.com/jgromerou/ej4-tp5-rollingcode.git
 ```
 
 y luego hacer click en el archivo index.html.
@@ -25,7 +25,7 @@ Es necesario contar con acceso a internet.
 
 ## Link para probar el Juego:
 
-[Netlify](https://numeros-magicos-rolling-romerouro.netlify.app/)
+[Netlify](https://reloj-digital-rollingcode-romerouro.netlify.app/)
 
 ## Autor
 
