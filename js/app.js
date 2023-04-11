@@ -3,6 +3,18 @@ setInterval(mostrarHora, 1000); //guardo el identificador unico del setInterval
 
 //TODO: Traer region para hacer un addEventListener
 
+let ciudad = document.querySelectorAll('.ciudad');
+console.log(ciudad);
+//ciudad.addEventListener('click', mostrarCiudad);
+for (let i = 0; i < ciudad.length; i++) {
+  ciudad[i].addEventListener('click', horaCiudad);
+}
+
+//funciones
+function mostrarCiudad(event) {
+  console.log(event.target.value);
+}
+
 // $(function () {
 //   mostrarHora();
 //   setInterval(mostrarHora, 1000);
@@ -56,7 +68,7 @@ function mostrarHora() {
   let pHora = document.getElementById('hora');
 
   if (horas >= 12) {
-    pHora.innerHTML = `${horas % 12}: ${minutos}: ${segundos} PM`;
+    pHora.innerHTML = `0${horas % 12}: ${minutos}: ${segundos} PM`;
   } else {
     pHora.innerHTML = `${horas}: ${minutos}: ${segundos} AM`;
   }
@@ -74,24 +86,24 @@ function mostrarHora() {
   // $('#fecha').html(fecha.getDate() + ' de ' + meses[fecha.getMonth()]);
 }
 
-function horaRegion() {
-  //Hora Regiones
+function horaCiudad() {
+  //Hora ciudades
 
-  let regiones = [
-    { region: 'México DC', diferencia: -3 },
-    { region: 'Sao Paulo', diferencia: 0 },
-    { region: 'Washington DC', diferencia: -1 },
-    { region: 'Madrid', diferencia: 5 },
-    { region: 'Seúl', diferencia: 12 },
-    { region: 'Toronto', diferencia: -1 },
-    { region: 'Bogotá', diferencia: -2 },
-    { region: 'Caracas', diferencia: -1 },
+  let ciudades = [
+    { ciudad: 'México DF', diferencia: -3 },
+    { ciudad: 'Sao Paulo', diferencia: 0 },
+    { ciudad: 'Washington DC', diferencia: -1 },
+    { ciudad: 'Madrid', diferencia: 5 },
+    { ciudad: 'Seúl', diferencia: 12 },
+    { ciudad: 'Toronto', diferencia: -1 },
+    { ciudad: 'Bogotá', diferencia: -2 },
+    { ciudad: 'Caracas', diferencia: -1 },
   ];
   let fechaActual = new Date();
   let checked = this.checked;
   let index = parseInt(this.value);
   if (checked) {
-    hora = fechaActual.getHours() + regiones[index].diferencia;
+    hora = fechaActual.getHours() + ciudades[index].diferencia;
     if (hora >= 24) hora = hora - 24;
     if (hora < 10) hora = '0' + hora;
     minutos = fechaActual.getMinutes();
@@ -99,25 +111,49 @@ function horaRegion() {
     segundos = fechaActual.getSeconds();
     if (segundos < 10) segundos = '0' + segundos;
 
-    let otros = document.getElementsById('otros');
+    //crear el parrafo para la ciudad
+    let spanCiudad = document.createElement('span');
+    spanCiudad.className = 'ciudad textoBlanco';
+    spanCiudad.innerHTML = `${ciudades[index].ciudad}`;
 
-    otros.append(`<div class='row" 
-    ${index} +
-    "'><div class='col-xs-6'><span class='ciudad'>" +
-    ${regiones[index].region} +
-    "</span></div><div class='col-xs-6'><span class='hora-ciudad'>" +
-    ${hora} +
-    ':' +
-    ${minutos} +
-    ':' +
-    ${segundos} +
-    '</span></div></div>`);
+    //crear el div del spanCiudad
+    let divCiudad = document.createElement('div');
+    divCiudad.className = 'col-6';
+    divCiudad.append(spanCiudad);
+
+    //crear el parrafo para la hora de la ciudad
+    let spanHora = document.createElement('span');
+    spanHora.className = 'hora-ciudad textoBlanco';
+    spanHora.innerHTML = `${hora}:${minutos}:${segundos}`;
+
+    //crear el div para el spanHora
+    let divHora = document.createElement('div');
+    divHora.className = 'col-6';
+    divHora.append(spanHora);
+
+    //insertar en el div otros
+    let otros = document.getElementById('otros');
+    otros.className = 'row';
+    otros.appendChild(divCiudad);
+    otros.appendChild(divHora);
+
+    // otros.append(`<div class='row"
+    // ${index} +
+    // "'><div class='col-xs-6'><span class='ciudad'>" +
+    // ${ciudades[index].ciudad} +
+    // "</span></div><div class='col-xs-6'><span class='hora-ciudad'>" +
+    // ${hora} +
+    // ':' +
+    // ${minutos} +
+    // ':' +
+    // ${segundos} +
+    // '</span></div></div>`);
 
     // $('#otros').append(
     //   "<div class='row" +
     //     index +
     //     "'><div class='col-xs-6'><span class='ciudad'>" +
-    //     regiones[index].region +
+    //     ciudades[index].ciudad +
     //     "</span></div><div class='col-xs-6'><span class='hora-ciudad'>" +
     //     hora +
     //     ':' +
