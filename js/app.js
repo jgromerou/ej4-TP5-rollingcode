@@ -1,48 +1,125 @@
-let formTextarea = document.getElementById('formTextarea');
-let cabeceraTabla = document.getElementById('cabeceraTabla');
-let contenidoTabla = document.getElementById('contenidoTabla');
-let cadenaTabla = [];
+mostrarHora();
+setInterval(mostrarHora, 1000); //guardo el identificador unico del setInterval
 
-//activadores de eventos
-formTextarea.addEventListener('submit', agregarTarea);
+let ciudad = document.querySelectorAll('.ciudad');
+for (let i = 0; i < ciudad.length; i++) {
+  ciudad[i].addEventListener('click', horaCiudad);
+}
 
-function agregarTarea(tarea) {
-  tarea.preventDefault();
+//Funciones
+function mostrarHora() {
+  //Hora local
+  let fechaActual = new Date();
+  const semana = [
+    'Domingo',
+    'Lunes',
+    'Martes',
+    'Miércoles',
+    'Jueves',
+    'Viernes',
+    'Sábado',
+  ];
+  const meses = [
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre',
+  ];
 
-  //se muestra la cabecera de la tabla
-  cabeceraTabla.classList.remove('d-none');
+  //formato 00:00:00
+  let segundos = fechaActual.getSeconds();
+  if (segundos < 10) segundos = '0' + segundos;
+  let minutos = fechaActual.getMinutes();
+  if (minutos < 10) minutos = '0' + minutos;
+  let horas = fechaActual.getHours();
+  if (horas < 10) horas = '0' + horas;
 
-  //valida si ingresó una cadena
-  if (tarea.target[0].value.length > 0) {
-    //se hace un push a la cadenaTabla
-    cadenaTabla.push(tarea.target[0].value);
+  //parrafo fecha
+  let pFecha = document.getElementById('fecha');
+  pFecha.innerHTML = `${
+    semana[fechaActual.getDay()]
+  } ${fechaActual.getDate()} de ${
+    meses[fechaActual.getMonth()]
+  } del ${fechaActual.getFullYear()}`;
 
-    //Crear th
-    let th = document.createElement('th');
-    //th.scope = 'row';
-    th.innerText = cadenaTabla.length;
+  //parrafo de la hora
+  let pHora = document.getElementById('hora');
 
-    //crear td tarea
-    let tdTarea = document.createElement('td');
-    tdTarea.innerText = tarea.target[0].value;
-
-    //crear td boton eliminar
-    let tdBotonEliminar = document.createElement('td');
-    tdBotonEliminar.innerHTML = `<i class="bi bi-trash3-fill"></i>`;
-
-    //Crear tr
-    let tr = document.createElement('tr');
-    tr.appendChild(th);
-    tr.appendChild(tdTarea);
-    tr.appendChild(tdBotonEliminar);
-
-    //se agrega el tr al contenido de la tabla
-    contenidoTabla.append(tr);
-
-    //Reset el textarea
-    tarea.target[0].value = '';
+  if (horas >= 12) {
+    pHora.innerHTML = `0${horas % 12}: ${minutos}: ${segundos} PM`;
   } else {
-    alert('Por favor, ingrese una cadena con la tarea');
-    tarea.target[0].value = '';
+    pHora.innerHTML = `${horas}: ${minutos}: ${segundos} AM`;
+  }
+}
+
+function horaCiudad() {
+  //Hora ciudades
+  let ciudades = [
+    { ciudad: 'México DF', diferencia: -3 },
+    { ciudad: 'Sao Paulo', diferencia: 0 },
+    { ciudad: 'Washington DC', diferencia: -1 },
+    { ciudad: 'Madrid', diferencia: 5 },
+    { ciudad: 'Seúl', diferencia: 12 },
+    { ciudad: 'Toronto', diferencia: -1 },
+    { ciudad: 'Bogotá', diferencia: -2 },
+    { ciudad: 'Caracas', diferencia: -1 },
+  ];
+  let fechaActual = new Date();
+  let checked = this.checked;
+  let index = parseInt(this.value);
+  if (checked) {
+    hora = fechaActual.getHours() + ciudades[index].diferencia;
+    if (hora >= 24) hora = hora - 24;
+    if (hora < 10) hora = '0' + hora;
+    minutos = fechaActual.getMinutes();
+    if (minutos < 10) minutos = '0' + minutos;
+    segundos = fechaActual.getSeconds();
+    if (segundos < 10) segundos = '0' + segundos;
+
+    //crear el parrafo para la ciudad
+    let spanCiudad = document.createElement('span');
+    spanCiudad.className = 'ciudad textoBlanco';
+    spanCiudad.innerHTML = `${ciudades[index].ciudad}`;
+
+    //crear el div del spanCiudad
+    let divCiudad = document.createElement('div');
+    divCiudad.className = 'col-6';
+    divCiudad.append(spanCiudad);
+
+    //crear el parrafo para la hora de la ciudad
+    let spanHora = document.createElement('span');
+    spanHora.className = 'hora-ciudad textoBlanco';
+    spanHora.innerHTML = `${hora}:${minutos}:${segundos}`;
+
+    //crear el div para el spanHora
+    let divHora = document.createElement('div');
+    divHora.className = 'col-6';
+    divHora.append(spanHora);
+
+    //div que contiene a los otros div
+    let divContenedor = document.createElement('div');
+    divContenedor.className = `row ${index}`;
+    divContenedor.appendChild(divCiudad);
+    divContenedor.appendChild(divHora);
+
+    //insertar en el div otros
+    let otros = document.getElementById('otros');
+
+    //se inserta en divContenedor de la ciudad en el id otros
+    otros.appendChild(divContenedor);
+  } else {
+    let element = document.getElementsByClassName(index);
+    while (element.length > 0) {
+      //se elimina el element o ciudad correspondiente al index del array ciudades
+      element[0].parentNode.removeChild(element[0]);
+    }
   }
 }
