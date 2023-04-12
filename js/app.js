@@ -1,4 +1,3 @@
-mostrarHora();
 setInterval(mostrarHora, 1000); //guardo el identificador unico del setInterval
 
 let ciudad = document.querySelectorAll('.ciudad');
